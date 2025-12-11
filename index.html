@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>balance account number</title>
+  <link rel="icon" type="image/jpg" href="icon-image.jpg">
+  <style>
+.animated-border {
+  position: relative;
+  width: 97%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -100vw;
+  background: conic-gradient(from 0deg,
+      #ff0000, #ff8000, #ffff00, #00ff00,
+      #00ffff, #0000ff, #ff00ff, #ff0000);
+  animation: rotate 5s linear infinite;
+  z-index: -1;
+}
+
+.animated-border::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  right: 8px;
+  bottom: 7px;
+  background-color: #0f0f0f;
+  border-radius: 8px;
+  z-index: 0;
+}
+
+.content {
+  color: white;
+  text-align: center;
+  font-size: 1.3em;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#teksUntukDisalin {
+ text-align: center; 
+  font-size: 2.5rem;
+  margin-top: -10px;
+  color: black;
+}
+  
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-text {
+  display: inline-block;
+  animation: marquee-animation 10s linear infinite;
+  padding-left: 100%;
+  box-sizing: content-box;
+  margin-top: 10vh; 
+ font-size: 1.2rem;
+}
+
+@keyframes marquee-animation {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+  
+#salinButton:hover {
+  background-color: #45a049;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+  .tombol-salin {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+ #salinButton {
+   background-color: #000923;
+   font-size: .70rem;
+   border: 4px solid aqua;
+   box-shadow: 0 0 10px 5px rgba(0, 120, 255, 0.9);  
+   border-radius: 20px;
+   color: white;
+   margin-top: -60px;
+   padding-top: 4px;
+   padding-bottom: 4px;
+}
+  
+#salinButton:active {
+  background-color: #3e8e41;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.salin-sukses {
+  animation: feedbackSukses 0.5s ease forwards;
+}
+
+@keyframes feedbackSukses {
+  0% { background-color: #4CAF50; transform: scale(1); }
+  50% { background-color: #28a745; transform: scale(1.05); }
+  100% { background-color: #4CAF50; transform: scale(1); }
+}
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.lightbox-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  border-radius: 50%;
+  padding: 5px 10px;
+}
+  
+.open-lightbox {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+  
+.barkode-utama {
+  width: 215px;
+  height: 215px;
+  margin-top: 25px;
+}
+  
+.barkode-utama img{
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+ }
+</style>
+</head>
+<body>
+<div class="animated-border">
+  <div class="content">
+    BALANCE ACCOUNT NUMBER
+  </div>
+</div>
+
+  <body style="background-color: #f7f7f7;">
+     <div class="marquee-container">
+       <p class="marquee-text">Atas Nama KOM****IN</p>
+     </div>
+       <div class="tombol-salin">
+          <p id="teksUntukDisalin">085603383994</p>
+          <button id="salinButton" onclick="salinTeksModern()">📑Salin Nomor</button>
+        </div>
+    
+    <div class="lightbox-overlay" id="myLightbox">
+      <div class="lightbox-content">
+        <span class="close-button" id="closeButton">&times;</span>
+        <img src="barkodegua.png" alt="Deskripsi Gambar">
+      </div>
+    </div>
+    
+     <a href="#" class="open-lightbox" id="openLightbox">
+       <div class="barkode-utama">
+          <img src="barkodegua.png" alt="gambar barcode">
+       </div>
+     </a>
+  <marquee behavior="scroll" direction="left" scrollamount="6">Ketuk⬆️ untuk Memperinci Kode QR</marquee> 
+</body>
+    
+      <script>
+async function salinTeksModern() {
+  const teks = document.getElementById('teksUntukDisalin').innerText;
+  const button = document.getElementById('salinButton');
+  const teksAsliTombol = button.innerText;
+
+  try {
+    await navigator.clipboard.writeText(teks);
+
+    button.innerText = 'Salin Sukses! ✅';
+button.style.backgroundColor = '#000923';
+button.style.boxShadow = '0 0 10px rgba(0, 255, 0, 0.7)';
+
+setTimeout(() => {
+  button.innerText = teksAsliTombol;
+  button.style.backgroundColor = '#000923';
+  button.style.boxShadow = '0 0 10px 5px rgba(0, 120, 255, 0.9)';
+}, 1500);
+
+
+  } catch (err) {
+    console.error('Gagal menyalin nomor:', err);
+    alert('Gagal menyalin nomor!');
+  }
+}
+  
+const openButton = document.getElementById('openLightbox');
+const closeButton = document.getElementById('closeButton');
+const lightbox = document.getElementById('myLightbox');
+
+openButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  lightbox.style.display = 'flex';
+});
+
+closeButton.addEventListener('click', function() {
+  lightbox.style.display = 'none';
+});
+
+lightbox.addEventListener('click', function(event) {
+  if (event.target === lightbox) {
+    lightbox.style.display = 'none';
+  }
+});
+     </script>
+</body>
+</html>
